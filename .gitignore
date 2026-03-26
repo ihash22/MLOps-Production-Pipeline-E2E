@@ -143,6 +143,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+MLOpsE2e/
 
 # Spyder project settings
 .spyderproject
@@ -205,3 +206,27 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Other Folders ignore
+sandbox_ignore/
+mlruns/
+
+# MLFlow
+mlflow.db
+*.pkl 
+
+# Ray Tune
+ray_results/
+
+# Data and Models
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+*.csv
+*.parquet
+*.pt
+*.pth
+
+# Mac specific 
+.DS_Store
