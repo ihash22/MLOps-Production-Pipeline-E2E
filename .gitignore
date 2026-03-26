@@ -207,10 +207,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Other Folders ignore
-sandbox_ignore/
-mlruns/
-
 # MLFlow
 mlflow.db
 *.pkl 
@@ -230,3 +226,8 @@ models/*
 
 # Mac specific 
 .DS_Store
+
+# Other Folders ignore
+sandbox_ignore/
+mlruns/
+tests/test_mlruns
