@@ -9,20 +9,23 @@ TEST_MLRUNS_DIR = SCRIPT_DIR / "test_mlruns"
 
 @pytest.fixture(scope="function", autouse=True)
 def setup_test_env():
-    """Ensures a completely isolated MLflow environment for each test."""
+    """Ensures a isolated MLflow environment without deleting the mount point."""
     mlflow.end_run() 
     
-    # Clean setup
+    # NEW LOGIC: Delete contents instead of the directory itself
     if TEST_MLRUNS_DIR.exists():
-        shutil.rmtree(TEST_MLRUNS_DIR)
-    TEST_MLRUNS_DIR.mkdir(parents=True, exist_ok=True)
+        for item in TEST_MLRUNS_DIR.iterdir():
+            if item.is_dir():
+                shutil.rmtree(item)
+            else:
+                item.unlink()
+    else:
+        TEST_MLRUNS_DIR.mkdir(parents=True, exist_ok=True)
     
     tracking_uri = f"file://{TEST_MLRUNS_DIR}"
     mlflow.set_tracking_uri(tracking_uri)
     
     yield
-    
-    # Clean up after test
     mlflow.end_run()
 
 def test_training_pipeline_e2e():

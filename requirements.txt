@@ -44,7 +44,7 @@ Flask==3.1.3
 flask-cors==6.0.2
 fonttools==4.62.1
 frozenlist==1.8.0
-fsspec==2024.6.1
+fsspec==2024.9.0 # updated from fsspec==2024.6.1 to fsspec==2024.9.0 during docker build --as evidently==0.7.21 requires fsspec>=2024.9.0
 gitdb==4.0.12
 GitPython==3.1.46
 google-api-core==2.30.0

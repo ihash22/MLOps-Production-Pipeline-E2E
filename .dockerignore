@@ -1,0 +1,5 @@
+__pycache__
+.git
+mlruns
+tests/test_mlruns
+.ipynb_checkpoints
