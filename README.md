@@ -27,8 +27,10 @@ The goal of this project was to build a scalable ML system that manages the enti
 Training (MLflow) → Promotion → Serving (FastAPI/Docker) → Monitoring (Evidently).
 
 ## 🚀 Live Demo
-#TODO update with demo when available 
-(link to my Hugging Face Space or Render API endpoint or somehting similiar)
+* **Model API**: (Containerized via Docker)
+* **Health Dashboard**: [View Live Data Drift Report](https://YOUR_USERNAME.github.io/MLOps-Production-Pipeline-E2E/)
+
+<!-- TODO (link to my Hugging Face Space or Render API endpoint or somehting similiar) -->
 
 ## 🚀 Quickstart: Reproduce with Docker
 The most reliable way to run this project is via Docker, which ensures environment parity and bypasses local dependency conflicts.
@@ -65,14 +67,11 @@ The pipeline includes a dedicated monitoring suite (```src/monitor.py```) utiliz
 * **Simulated Drift**: The current suite verifies system health by simulating a 50% increase in petal length to ensure drift is detected and visualized.
 
 ## 🛠️ Performance Metrics
-#TODO update this template later for P&M
 | Metric | Baseline (v1.0) | Status |
 | :--- | :--- | :--- |
 | Accuracy | 1.00 | 1.00 | ✅ Promoted
 | Inference Latency | < 20 ms> | ✅ Optimized |
 | Data Drift | 0% (Baseline) | ⚠️ Detected (Simulated) |
-
-> **Note on Model Drift:** #TODO update this later on --> I utilize a daily data stream from [API Name] to monitor for concept drift. View the latest monitoring report [here](#).
 
 ## 📖 Roadmap
 - [x] Week 1: Baseline Pipeline & Data Validation
@@ -80,15 +79,17 @@ The pipeline includes a dedicated monitoring suite (```src/monitor.py```) utiliz
 - [x] Week 3: CI/CD & Cloud Deployment
 - [x] Week 4: Drift Detection & Performance Tuning
 
-
-
-## 📖 TODO
-
-- Bridge Conda and Pip - Developed using Conda for environment stability; compatible with Pip for lightweight container deployment. - before deploying to containers export to pip
--Integrate Ray for distributed orchestration.
-
 ## 🖼️ Sample Screenshots
 
 ### Local Run Experiment Results
 
 ![MLFlow Dashboard Local Run](docs/images/MlflowDashLocalRun.png)
+
+
+<!-->
+## 📖 TODO
+
+- Bridge Conda and Pip - Developed using Conda for environment stability; compatible with Pip for lightweight container deployment. - before deploying to containers export to pip
+-Integrate Ray for distributed orchestration.
+-->
+
