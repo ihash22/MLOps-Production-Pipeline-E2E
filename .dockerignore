@@ -1,5 +1,7 @@
 __pycache__
+.pytest_cache
+mlruns/.trash
 .git
-mlruns
 tests/test_mlruns
 .ipynb_checkpoints
+sandbox_ignore/

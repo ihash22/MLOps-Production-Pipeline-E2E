@@ -42,3 +42,13 @@ jobs:
           echo "❌ Promotion Failed"
           exit 1
         fi
+
+    - name: Run Data Drift Monitoring
+          run: |
+            python src/monitor.py
+
+        - name: Upload Drift Report
+          uses: actions/upload-artifact@v4
+          with:
+            name: data-drift-report
+            path: docs/reports/data_drift_report.html
