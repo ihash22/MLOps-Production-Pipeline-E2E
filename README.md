@@ -86,7 +86,7 @@ The pipeline includes a dedicated monitoring suite (```src/monitor.py```) utiliz
 ![MLFlow Dashboard Local Run](docs/images/MlflowDashLocalRun.png)
 
 
-<!-->
+<!--
 ## 📖 TODO
 
 - Bridge Conda and Pip - Developed using Conda for environment stability; compatible with Pip for lightweight container deployment. - before deploying to containers export to pip
