@@ -26,7 +26,7 @@ jobs:
     - name: 🧠 Run Distributed Training (Ray + MLflow)
       shell: bash -el {0}
       run: |
-        pip install --upgrade setuptools wheel
+        pip install "setuptools==69.5.1" wheel
         python src/train_ray.py
 
     # 3. Execute the promotion script to isolate the best model

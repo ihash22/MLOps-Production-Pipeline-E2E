@@ -5,7 +5,7 @@ channels:
 dependencies:
   - python=3.10
   - pip
-  - setuptools
+  - setuptools==69.5.1
   - pip:
       - fsspec #removed specific version number due to cicd failure, let conda resolve
       - sympy==1.13.1
