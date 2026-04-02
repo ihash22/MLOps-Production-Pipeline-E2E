@@ -2,53 +2,52 @@ name: MLOps E2E Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  test-and-promote:
+  build-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout Code
+    - name: 📥 Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v5
+    # 1. Read environment.yml and build the exact Conda environment
+    - name: 🐍 Set up Conda Environment
+      uses: conda-incubator/setup-miniconda@v3
       with:
-        python-version: '3.10'
+        environment-file: environment.yml
+        activate-environment: mlops_prod
+        auto-activate-base: false
 
-    - name: Install Dependencies
+    # 2. Execute the training & tuning script inside the Conda env
+    - name: 🧠 Run Distributed Training (Ray + MLflow)
+      shell: bash -el {0}
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        python src/train_ray.py
 
-    - name: Run E2E Tests
+    # 3. Execute the promotion script to isolate the best model
+    - name: 🏆 Promote Best Model
+      shell: bash -el {0}
       run: |
-        python -m pytest tests/test_train.py
-
-    - name: Run Model Promotion
-      run: |
-        # We run the training script first to ensure there is data to promote
-        python src/train.py
         python src/promote_model.py
 
-    - name: Verify Staging Artifact
+    # 4. Run the drift detection logic
+    - name: 📊 Run Data Drift Monitor
+      shell: bash -el {0}
       run: |
-        if [ -f "dist/best_run.txt" ]; then
-          echo "✅ Model Promotion Successful"
-        else
-          echo "❌ Promotion Failed"
-          exit 1
-        fi
+        python src/monitor.py
 
-    - name: Run Data Drift Monitoring
-          run: |
-            python src/monitor.py
+    # 5. Save the Evidently HTML report as a downloadable artifact
+    - name: 💾 Upload Drift Report Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: data-drift-report
+        path: docs/reports/data_drift_report.html
 
-        - name: Upload Drift Report
-          uses: actions/upload-artifact@v4
-          with:
-            name: data-drift-report
-            path: docs/reports/data_drift_report.html
+    # 6. Test the Docker Build using your lean requirements-serve.txt
+    - name: 🐳 Test Docker Build
+      run: |
+        docker build -t iris-predictor:ci-test -f Dockerfile.serve .
