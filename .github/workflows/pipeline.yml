@@ -20,7 +20,7 @@ jobs:
       with:
         environment-file: environment.yml
         activate-environment: mlops_prod
-        auto-activate-base: false
+        auto-activate: false
 
     # 2. Execute the training & tuning script inside the Conda env
     - name: 🧠 Run Distributed Training (Ray + MLflow)

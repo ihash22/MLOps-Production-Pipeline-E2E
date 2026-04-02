@@ -6,7 +6,7 @@ dependencies:
   - python=3.10
   - pip
   - pip:
-      - fsspec==2024.6.1
+      - fsspec #removed specific version number due to cicd failure, let conda resolve
       - sympy==1.13.1
       - ray[train,serve,tune]==2.54.0
       - mlflow==2.15.0
