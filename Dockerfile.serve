@@ -4,11 +4,11 @@ FROM python:3.10-slim
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy only the requirements first to leverage Docker's cache
-COPY requirements.txt .
+# Copy ONLY the serving requirements to leverage Docker's cache
+COPY requirements-serve.txt .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install the lightweight serving dependencies
+RUN pip install --no-cache-dir -r requirements-serve.txt
 
 # Copy the source code and the necessary data folders
 COPY src/ ./src/
