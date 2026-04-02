@@ -78,6 +78,7 @@ The pipeline includes a dedicated monitoring suite (```src/monitor.py```) utiliz
 - [x] Week 2: Testing & Containerization
 - [x] Week 3: CI/CD & Cloud Deployment
 - [x] Week 4: Drift Detection & Performance Tuning
+- [x] Bonus: Integrate Ray on New Feaeture Branch
 
 ## 🖼️ Sample Screenshots
 

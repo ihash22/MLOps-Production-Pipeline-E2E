@@ -8,7 +8,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 BASE_DIR = SCRIPT_DIR.parent
 MLRUNS_DIR = BASE_DIR / "mlruns"
 TRACKING_URI = f"file://{MLRUNS_DIR}"
-EXPERIMENT_NAME = "iris_production_check"
+EXPERIMENT_NAME = "ray_distributed_search"
 
 def get_best_model():
     mlflow.set_tracking_uri(TRACKING_URI)
