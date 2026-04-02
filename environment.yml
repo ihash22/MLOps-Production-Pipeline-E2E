@@ -6,6 +6,7 @@ dependencies:
   - python=3.10
   - pip
   - pip:
+      - setuptools
       - fsspec #removed specific version number due to cicd failure, let conda resolve
       - sympy==1.13.1
       - ray[train,serve,tune]==2.54.0
