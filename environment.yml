@@ -11,9 +11,11 @@ dependencies:
       - ray[train,serve,tune]==2.54.0
       - mlflow==2.15.0
       - great-expectations==1.15.1
-      - evidently>=0.5.0
+      # 🚨 Pinned strictly to 0.7.21 to prevent future architectural breaking changes
+      - evidently==0.7.21
       - fastapi
       - uvicorn
       - scikit-learn
       - pandas
       - python-dotenv
+      - pytest
